@@ -1,0 +1,13 @@
+$('#<%= escape_javascript @feedback_message_area %>').append('<%= escape_javascript @message.html_safe %>')
+
+
+<% @file_attachments.each_with_index do |file_attachment, index| %>
+
+  var inputEl = $('input.file_selector');
+  addFile( inputEl, {name: '<%= file_attachment.filename %>'}, false);
+
+  <%- @attachment = file_attachment %>
+  <%= render :template => "attachments/upload", :locals => {:params => params } %>
+  <%= params[:attachment_id]=  (params[:attachment_id].to_i + 1).to_s %>
+
+<% end %>

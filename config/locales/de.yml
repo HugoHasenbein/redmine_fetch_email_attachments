@@ -1,0 +1,60 @@
+# encoding: utf-8
+#
+# Redmine plugin for quick attribute setting of redmine issues
+#
+# Copyright © 2014-2018 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+#
+
+de:
+  field_fetchEmailAttachments_protocol: "Protokoll"
+  field_fetchEmailAttachments_host: "Host"
+  field_fetchEmailAttachments_port: "Port"
+  field_fetchEmailAttachments_username: "Login"
+  field_fetchEmailAttachments_password: "Passwort"
+  field_fetchEmailAttachments_use_ssl: "SSL nutzen"
+  field_fetchEmailAttachments_ssl_verify: "SSL-Zertifikat prüfen"
+  field_fetchEmailAttachments_imap_folder: "IMAP Pfad-Prefix"
+  field_fetchEmailAttachments_move_on_success: "abgeholte Nachrichten verschieben nach"
+  field_fetchEmailAttachments_move_on_failure: "nicht lesbare Nachrichten verschieben nach"
+  field_fetchEmailAttachments_apop: "APOP nutzen"
+  field_fetchEmailAttachments_delete_unprocessed: "nicht verarbeitete Nachrichten löschen"
+  field_fetchEmailAttachments_ticket_attachments: "Ticket Anhänge erneut anhängen können"
+  field_fetchEmailAttachments_project_documents: "Dokumente des Projektes erneut anhängen können"
+  
+  label_fetchEmailAttachments_incoming_mail_server: "Email-Server für FetchAttachments"
+  label_email_attachment_plural: "Anhänge"
+  label_fetch_success: "Verabeitete %{count} E-Mail(s)"
+  label_fetch_attachments_from_email: "Email-Anhänge"
+  label_user_email_not_configured: "Anhänge von Emails an \"Benutzer\" anfügen nicht konfiguriert. Konfigurieren in \"Mein Konto\""
+  
+  label_issue_attachment_plural: "Datei-Anhänge des gesamten Tickets"
+  label_issue_attachments_success: "Verarbeitete %{count} Datei-Anhänge des Tickets"
+  label_issue_attachments_reattach: "Ticket-Datei-Anhänge kopieren"
+  label_select_issue_documents: "Ticket-Dateien"
+  
+  label_journal_attachment_plural: "Journal-Anhänge des gesamten Tickets"
+  label_journal_attachments_success: "Verarbeitete %{count} Datei-Anhänge des Journals"
+  label_journal_attachments_reattach: "Journal-Datei-Anhänge kopieren"
+  label_select_journal_documents: "Journal-Dateien"
+   
+  label_documents_attachment_plural: "Dokumente des Projekts"
+  label_documents_attachments_success: "Verarbeitete %{count} Dokumente des Projekts"
+  label_documents_attachments_reattach: "Projekt-Dokumente kopieren"
+  label_select_project_documents: "Projekt-Dokumente"
+  
+  label_fetchEmailAttachments_reload: "laden"

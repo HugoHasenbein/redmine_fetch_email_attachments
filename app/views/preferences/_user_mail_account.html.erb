@@ -1,0 +1,113 @@
+<fieldset class="box tabular">
+<legend><%= l(:label_fetchEmailAttachments_incoming_mail_server) %></legend>
+  <script type="text/javascript" charset="utf-8">
+    function changeServerSettings(element) {
+      $('#fetchEmailAttachments_use_ssl_field').show();
+
+      if (element.value == 'pop3') {
+        $('#server_settings').show();
+        $('#imap_settings').hide();
+        $('#pop3_settings').show();
+        $('#host_settings').show();
+      }
+
+      if (element.value == 'imap') {
+        $('#server_settings').show();
+        $('#pop3_settings').hide();
+        $('#imap_settings').show();
+        $('#host_settings').show();
+      }
+
+      if (element.value == '') {
+        $('#server_settings').hide();
+      }
+
+      if (element.value == 'gmail' || element.value == 'yahoo' || element.value == 'yandex' ) {
+        $('#server_settings').show();
+        $('#host_settings').hide();
+        $('#imap_settings').show();
+        $('#pop3_settings').hide();
+        $('#fetchEmailAttachments_use_ssl_field').hide();
+      }
+
+    }
+  </script>
+  <%= labelled_fields_for :pref, @user.pref do |pref_fields| %>
+	  <p>
+		<%= pref_fields.select(:fetchEmailAttachments_protocol, options_for_select([['', ""], ["pop3", "pop3"], ["imap", "imap"], ["Gmail", "gmail"], ["Yahoo", "yahoo"]], @user.pref.fetchEmailAttachments_protocol), {}, {:onchange => "changeServerSettings(this)"} ) %>
+	  </p>
+	  <span id="server_settings"  <%= "style=\"display: none;\"".html_safe if @user.pref.fetchEmailAttachments_protocol.blank? %>>
+		
+		<span id="host_settings" <%= "style=\"display: none;\"".html_safe if ["gmail","yahoo", "yandex"].include?(@user.pref.fetchEmailAttachments_protocol) %>>
+		  <p>
+			<%= pref_fields.text_field :fetchEmailAttachments_host, :value => @user.pref.fetchEmailAttachments_host %>
+		  </p>
+		  <p>
+			<%= pref_fields.text_field :fetchEmailAttachments_port, :value => @user.pref.fetchEmailAttachments_port %>
+		  </p>
+		</span>
+
+		<p>
+		  <%= pref_fields.text_field :fetchEmailAttachments_username, :value => @user.pref.fetchEmailAttachments_username %>
+		</p>
+
+		<p>
+          <%= content_tag 'label', l(:field_fetchEmailAttachments_password), :id => "fetchEmailAttachments_password_label"  %>
+          <%= link_to_function image_tag('edit.png'), '$("#fetchEmailAttachments_password_label").hide(); $(this).hide(); $("#fetchEmailAttachments_password_field").show()' unless @user.pref.fetchEmailAttachments_username.blank? %>
+		  <%= content_tag 'span', :id => "fetchEmailAttachments_password_field", :style => (@user.pref.fetchEmailAttachments_username.blank? ? nil : 'display:none') do %>
+			<%= pref_fields.password_field :fetchEmailAttachments_password, :value => @user.pref.fetchEmailAttachments_password %>
+		  <% end %>
+		</p>
+
+		<span <%= "style=\"display: none;\"".html_safe if ["gmail", "yahoo", "yandex"].include?(@user.pref.fetchEmailAttachments_protocol) %> id="fetchEmailAttachments_use_ssl_field">
+		<p>
+		  <%= pref_fields.check_box :fetchEmailAttachments_use_ssl %>
+		</p>
+	
+		<p>
+		  <%= pref_fields.check_box :fetchEmailAttachments_ssl_verify %>
+		</p>
+
+		</span>
+		<span id="imap_settings"  <%= "style=\"display: none;\"".html_safe if !["gmail", "yahoo", "yandex", "imap"].include?(@user.pref.fetchEmailAttachments_protocol) %>>
+		  <p>
+			<%= pref_fields.text_field :fetchEmailAttachments_imap_folder, :value => @user.pref.fetchEmailAttachments_imap_folder %>
+		  </p>
+
+		  <p>
+			<%= pref_fields.text_field :fetchEmailAttachments_move_on_success, :value => @user.pref.fetchEmailAttachments_move_on_success %>
+		  </p>
+
+		  <p>
+			<%= pref_fields.text_field :fetchEmailAttachments_move_on_failure, :value => @user.pref.fetchEmailAttachments_move_on_failure %>
+		  </p>
+		</span>
+		
+		<span id="pop3_settings" <%= "style=\"display: none;\"".html_safe if @user.pref.fetchEmailAttachments_protocol != "pop3"  %>>
+		  <p>
+			<%= pref_fields.check_box :fetchEmailAttachments_apop %>
+		  </p>
+
+		  <p>
+			<%= pref_fields.check_box :fetchEmailAttachments_delete_unprocessed %>
+		  </p>
+		</span>
+
+		<div id="test_connection_messages">
+		</div>
+		 
+	  </span>
+
+  </span> <!-- Server settings -->
+    <p>
+      <span id="fetch_attachments_settings">
+			<%= pref_fields.check_box :fetchEmailAttachments_ticket_attachments %>
+      </span> <!-- Attachments settings -->
+    </p>
+    <p>
+      <span id="fetch_attachments_settings">
+			<%= pref_fields.check_box :fetchEmailAttachments_project_documents %>
+      </span> <!-- Project Documents settings -->
+    </p>
+  <% end %>
+</fieldset>

@@ -1,0 +1,60 @@
+# encoding: utf-8
+#
+# Redmine plugin for quick attribute setting of redmine issues
+#
+# Copyright © 2014-2018 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+#
+
+en:
+  field_fetchEmailAttachments_protocol: "Protocol"
+  field_fetchEmailAttachments_host: "Host"
+  field_fetchEmailAttachments_port: "Port"
+  field_fetchEmailAttachments_username: "Login"
+  field_fetchEmailAttachments_password: "Password"
+  field_fetchEmailAttachments_use_ssl: "Use SSL"
+  field_fetchEmailAttachments_ssl_verify: "Verify SSL-certificate"
+  field_fetchEmailAttachments_imap_folder: "IMAP path prefix"
+  field_fetchEmailAttachments_move_on_success: "move read message to"
+  field_fetchEmailAttachments_move_on_failure: "move unreadable message to"
+  field_fetchEmailAttachments_apop: "Use APOP"
+  field_fetchEmailAttachments_delete_unprocessed: "delete unprocessed messages"
+  field_fetchEmailAttachments_ticket_attachments: "enable reattach issues attachments"
+  field_fetchEmailAttachments_project_documents: "enalbe attach project documents"
+  
+  label_fetchEmailAttachments_incoming_mail_server: "Email-server for FetchAttachments"
+  label_email_attachment_plural: "Attachments"
+  label_fetch_success: "Processed %{count} email(s)"
+  label_fetch_attachments_from_email: "Email-attachments"
+  label_user_email_not_configured: "Attach email attachments form user emails not configured. Configurieren in \"My Account\""
+  
+  label_issue_attachment_plural: "All issue attachments"
+  label_issue_attachments_success: "Processed %{count} attachments of issue"
+  label_issue_attachments_reattach: "Copy issue-attachments"
+  label_select_issue_documents: "Issue attachments"
+  
+  label_journal_attachment_plural: "Journal attachments of whole issue"
+  label_journal_attachments_success: "Processed %{count} attachments of journal"
+  label_journal_attachments_reattach: "Copy journal attachmnets"
+  label_select_journal_documents: "Journal-attachments"
+   
+  label_documents_attachment_plural: "Project documents"
+  label_documents_attachments_success: "Processed %{count} project documents"
+  label_documents_attachments_reattach: "Copy project documents"
+  label_select_project_documents: "Project Documents"
+  
+  label_fetchEmailAttachments_reload: "load"
