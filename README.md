@@ -2,6 +2,7 @@
 
 This is a plugin for redmine to fetch email attachments from a user individual email account. The user email account can be configured in "My Account" for each individual user.
 
+<<<<<<< HEAD
 ![animated GIF that represents a quick overview](/doc/Overview.gif)
 
 ### Use case
@@ -49,3 +50,5 @@ Go to "My Account" and configure your email account credentials. Aside from emai
 
 * **2.0.2** July 3rd commit
 
+=======
+>>>>>>> c948728f7ab7be941e62d3f5282047ea2730b239
