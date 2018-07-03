@@ -195,10 +195,10 @@ class FetchEmailAttachmentsMailer < MailHandler
 
     ###########################################################
     #                                                         #
-    #  mark received email as read or delete (in preferences) #
+    #  mark received email as read                            #
     #                                                         #
     ###########################################################
-		@imap.uid_store(uid, "+FLAGS", [:Seen, :Deleted])
+		@imap.uid_store(uid, "+FLAGS", [:Seen])
 
 	  else
 	  
