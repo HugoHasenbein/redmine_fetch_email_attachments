@@ -36,7 +36,7 @@ go to Redmine root folder
 
 ### Use
 
-Go to "My Account" and configure your email account credentials. Aside from email you cann enable to attach project documents from the prooject documents module or reattach journal attachments. The latter is for a redmine email client, wich edits emails inline an issue.
+Go to "My Account" and configure your email account credentials. Aside from email you can enable to attach project documents from the project documents module or reattach journal attachments. The latter is for a redmine email client, wich edits emails inline an issue.
 
 **Have fun!**
 
