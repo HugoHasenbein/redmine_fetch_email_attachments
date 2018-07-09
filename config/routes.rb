@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine plugin for quick attribute setting of redmine issues
+# Redmine plugin to fetch attachments form a user configurable email account
 #
 # Copyright © 2014-2018 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
@@ -19,6 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 #
+
 
 post "fetch_email_attachments/fetch" => "fetch_email_attachments#fetch"
 post "fetch_email_attachments/reattach" => "fetch_email_attachments#reattach"

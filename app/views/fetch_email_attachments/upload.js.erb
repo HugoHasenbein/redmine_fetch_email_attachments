@@ -8,6 +8,6 @@ $('#<%= escape_javascript @feedback_message_area %>').append('<%= escape_javascr
 
   <%- @attachment = file_attachment %>
   <%= render :template => "attachments/upload", :locals => {:params => params } %>
-  <%= params[:attachment_id]=  (params[:attachment_id].to_i + 1).to_s %>
+  <%- params[:attachment_id]=  (params[:attachment_id].to_i + 1).to_s %>
 
 <% end %>

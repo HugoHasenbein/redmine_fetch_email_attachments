@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine plugin for quick attribute setting of redmine issues
+# Redmine plugin to fetch attachments form a user configurable email account
 #
 # Copyright © 2014-2018 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
