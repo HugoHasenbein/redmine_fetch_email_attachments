@@ -1,66 +1,68 @@
 <%- if (feedback == "fetch_email_issue" and @issue.new_record?) || (feedback == "fetch_email_note") %>
+  <div>
   <fieldset><legend><%= l(:label_email_attachment_plural) %></legend>
-	<% if User.current.pref.fetchEmailAttachments_protocol.blank? %>
-	  <p><%= l(:label_user_email_not_configured) %></p>
-	<% else %>
-	  <label class="icon icon-duplicate">
-	  <%= link_to l(:label_fetch_attachments_from_email), "#",
-				  :remote => true,
-				  :onclick => "fetchJsForm('#{url_for(:controller => 'fetch_email_attachments', :action => 'fetch', :feedback_message_area => feedback, :project_id => @project, :issue_id => @issue.id.to_s, :user_id => User.current.id.to_s)}', this, addFile.nextAttachmentId );",
-				  :class => "icon icon-email" %> 
-	  </label>
-	<% end %>
-	<% #-------- %>
-	<% unless User.current.pref.fetchEmailAttachments_ticket_attachments.blank? %>
-	  <% unless @issue.journals.nil? || !@issue.journals.any? %>
-		<%   
-			 journalized_attachments = []
-			 journal_option_arr = []
-			 option_arr = []
-			 @issue.journals.each_with_index do |journal, i|
-			   journal_option_arr << "<option disabled value='none'>" + (i+1).to_s + ". " + (User.find_by_id(journal.user_id)).login.to_s + ": " + journal.created_on.strftime("%a, %d.%m.%y %X") + "</option>"
-			   journal.details.each do |detail|
-				 if (detail.property == 'attachment' and !detail.value.blank? and attachment = Attachment.find_by_id(detail.prop_key) )
-						 journalized_attachments << attachment 
-						 journal_option_arr << "<option value='" + attachment.id.to_s + "'>&nbsp;-&nbsp;" + attachment.filename + "</option>"
-				 end  
-			   end
-			   option_arr << journal_option_arr
-			   journal_option_arr = []
-			 end
-			 if (User.current.pref[:comments_sorting] == "desc")
-				option_arr.reverse!
-			 end
-			 pure_issue_attachments = @issue.attachments - journalized_attachments
-			 issue_option_arr = []
-			 issue_option_arr << "<option disabled value='none'>" + l(:label_issue) + "</option>"
-			 pure_issue_attachments.each do |attachment|
-			   issue_option_arr << ("<option value='" + attachment.id.to_s + "'>&nbsp;-&nbsp;" + attachment.filename + "</option>")
-			 end
-			 issue_option_arr.concat(option_arr)
-		%>
-		<label class="icon icon-duplicate" for="attachment_id">
-		</label>
-		<%= select_tag "issue_attachment_id", 
-						issue_option_arr.join('').html_safe,
-						:prompt => l(:label_select_issue_documents), 
-						:onchange => "fetchJsForm('#{url_for(:controller => 'fetch_email_attachments', :action => 'reattach_named_attachment', :feedback_message_area => feedback, :project_id => @project, :user_id => User.current.id.to_s)}', this, addFile.nextAttachmentId );" %>
-		</label>
-	  <% end #unless %>
-	  <% #-------- %>
-	<% end %>
-	<% #-------- %>
-	<% unless User.current.pref.fetchEmailAttachments_project_documents.blank? %>
-	  <% unless @project.nil? || @project.documents.nil? %> 
-		<label class="icon icon-duplicate" for="document_id">
-		<%= select_tag "document_id", 
-						options_from_collection_for_select(@project.documents, "id", "title"), 
-						:prompt => l(:label_select_project_documents), 
-						:onchange => "fetchJsForm('#{url_for(:controller => 'fetch_email_attachments', :action => 'reattach_project_documents', :feedback_message_area => feedback, :project_id => @project, :user_id => User.current.id.to_s)}', this, addFile.nextAttachmentId);" %>
-		</label>
+	  <% if User.current.pref.fetchEmailAttachments_protocol.blank? %>
+		<p><%= l(:label_user_email_not_configured) %></p>
+	  <% else %>
+		
+		<span class="icon icon-duplicate">
+		<%= link_to l(:label_fetch_attachments_from_email), "#",
+					:remote => true,
+					:onclick => "fetchJsForm('#{url_for(:controller => 'fetch_email_attachments', :action => 'fetch', :feedback_message_area => feedback, :project_id => @project, :issue_id => @issue.id.to_s, :user_id => User.current.id.to_s)}', this, addFile.nextAttachmentId );",
+					:class => "icon icon-email" %> 
+		</span>
 	  <% end %>
-	<% end %>
+	  <% #-------- %>
+	  <% unless User.current.pref.fetchEmailAttachments_ticket_attachments.blank? %>
+		<% unless @issue.journals.nil? || !@issue.journals.any? %>
+		  <%   
+			   journalized_attachments = []
+			   journal_option_arr = []
+			   option_arr = []
+			   @issue.journals.each_with_index do |journal, i|
+				 journal_option_arr << "<option disabled value='none'>" + (i+1).to_s + ". " + (User.find_by_id(journal.user_id)).login.to_s + ": " + journal.created_on.strftime("%a, %d.%m.%y %X") + "</option>"
+				 journal.details.each do |detail|
+				   if (detail.property == 'attachment' and !detail.value.blank? and attachment = Attachment.find_by_id(detail.prop_key) )
+						   journalized_attachments << attachment 
+						   journal_option_arr << "<option value='" + attachment.id.to_s + "'>&nbsp;-&nbsp;" + attachment.filename + "</option>"
+				   end  
+				 end
+				 option_arr << journal_option_arr
+				 journal_option_arr = []
+			   end
+			   if (User.current.pref[:comments_sorting] == "desc")
+				  option_arr.reverse!
+			   end
+			   pure_issue_attachments = @issue.attachments - journalized_attachments
+			   issue_option_arr = []
+			   issue_option_arr << "<option disabled value='none'>" + l(:label_issue) + "</option>"
+			   pure_issue_attachments.each do |attachment|
+				 issue_option_arr << ("<option value='" + attachment.id.to_s + "'>&nbsp;-&nbsp;" + attachment.filename + "</option>")
+			   end
+			   issue_option_arr.concat(option_arr)
+		  %>
+		  <span class="icon icon-duplicate" for="attachment_id">
+		  <%= select_tag "issue_attachment_id", 
+						  issue_option_arr.join('').html_safe,
+						  :prompt => l(:label_select_issue_documents), 
+						  :onchange => "fetchJsForm('#{url_for(:controller => 'fetch_email_attachments', :action => 'reattach_named_attachment', :feedback_message_area => feedback, :project_id => @project, :user_id => User.current.id.to_s)}', this, addFile.nextAttachmentId );" %>
+		  </span>
+		<% end #unless %>
+		<% #-------- %>
+	  <% end %>
+	  <% #-------- %>
+	  <% unless User.current.pref.fetchEmailAttachments_project_documents.blank? %>
+		<% unless @project.nil? || @project.documents.nil? %> 
+		  <span class="icon icon-duplicate" for="document_id">
+		  <%= select_tag "document_id", 
+						  options_from_collection_for_select(@project.documents, "id", "title"), 
+						  :prompt => l(:label_select_project_documents), 
+						  :onchange => "fetchJsForm('#{url_for(:controller => 'fetch_email_attachments', :action => 'reattach_project_documents', :feedback_message_area => feedback, :project_id => @project, :user_id => User.current.id.to_s)}', this, addFile.nextAttachmentId);" %>
+		  </span>
+		<% end %>
+	  <% end %>
   </fieldset>
+  </div>
   <div id="<%= feedback %>"></div>
 
   <%= javascript_include_tag "fetchEmailAttachment", :plugin => "redmine_fetch_email_attachments" %>
