@@ -20,6 +20,8 @@
 #
 #
 
+require 'redmine'
+
 Redmine::Plugin.register :redmine_fetch_email_attachments do
   name 'Redmine Fetch Email Attachments plugin'
   author 'Stephan Wenzel'
