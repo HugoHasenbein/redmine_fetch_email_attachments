@@ -10,9 +10,7 @@ This is a plugin for redmine to fetch email attachments from a user individual e
 
 ### Install 
 
-1. go to your plugins folder
-
-`https://github.com/HugoHasenbein/redmine_fetch_email_attachments.git`
+1. download plugin and copy plugin folder redmine_fetch_email_attachments go to Redmine's plugins folder 
 
 2. install gems
 
@@ -26,7 +24,7 @@ go to Redmine root folder
 
 ### Uninstall
 
-1. go to your plugins folder
+1. go to your plugins folder, delete plugin folder redmine_fetch_email_attachments
 
 `rm -r redmine_fetch_email_attachments`
 
